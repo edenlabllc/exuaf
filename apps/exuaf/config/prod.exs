@@ -8,3 +8,4 @@ config :exuaf, EXUAFWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config ExUAF.FidoServer.Client, url: "${FIDO_SERVER_URL}"

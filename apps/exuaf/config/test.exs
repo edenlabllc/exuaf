@@ -10,10 +10,12 @@ config :exuaf, EXUAFWeb.Endpoint,
 config :logger, level: :warn
 
 # Configure your database
-config :exuaf, EXUAF.Repo,
+config :exuaf, ExUAF.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
   database: "exuaf_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+#config :exuaf, fido_client: FidoServerMock

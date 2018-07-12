@@ -1,16 +1,18 @@
 use Mix.Config
 
 config :exuaf,
-  namespace: EXUAF,
-  ecto_repos: [EXUAF.Repo],
+  namespace: ExUAF,
+  ecto_repos: [ExUAF.Repo],
   generators: [binary_id: true]
+
+config :exuaf, fido_client: ExUAF.FidoServer.Client
 
 config :exuaf, EXUAFWeb.Endpoint,
   load_from_system_env: true,
   url: [host: "localhost"],
   secret_key_base: "fsUwr9HzZhrg9VIu30TB5DaWD2gsWft2rSoR8XchaKctNWHCcw9KjEERXq2dxHrE",
   render_errors: [view: EXUAFWeb.ErrorView, accepts: ~w(json)],
-  pubsub: [name: EXUAF.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: ExUAF.PubSub, adapter: Phoenix.PubSub.PG2]
 
 config :phoenix, :format_encoders, json: Jason
 
@@ -20,6 +22,6 @@ config :logger, :console,
   handle_otp_reports: true,
   level: :info
 
-# Import environment specific config. This must remain at the bottom
-# of this file so it overrides the configuration defined above.
+config :exuaf, ExUAF.FidoServer.Client, url: "http://localhost:8080"
+
 import_config "#{Mix.env()}.exs"

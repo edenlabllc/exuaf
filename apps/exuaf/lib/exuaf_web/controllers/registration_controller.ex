@@ -1,10 +1,14 @@
 defmodule EXUAFWeb.RegistrationController do
   use EXUAFWeb, :controller
 
-  alias EXUAF.FallbackController
-  alias Plug.Conn
+  alias ExUAF.FallbackController
 
   action_fallback(FallbackController)
+
+  def is_registered(conn, %{"username" => username}) do
+    IO.inspect(username)
+    System.halt()
+  end
 
   def create(conn, params) do
     conn

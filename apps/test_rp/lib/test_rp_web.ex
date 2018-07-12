@@ -1,12 +1,12 @@
-defmodule EXUAFWeb do
+defmodule TestRpWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use EXUAFWeb, :controller
-      use EXUAFWeb, :view
+      use TestRpWeb, :controller
+      use TestRpWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,21 +19,21 @@ defmodule EXUAFWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: EXUAFWeb
+      use Phoenix.Controller, namespace: TestRpWeb
       import Plug.Conn
-      import EXUAFWeb.Router.Helpers
+      import TestRpWeb.Router.Helpers
     end
   end
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/exuaf_web/templates",
-                        namespace: EXUAFWeb
+      use Phoenix.View, root: "lib/test_rp_web/templates",
+                        namespace: TestRpWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
 
-      import EXUAFWeb.Router.Helpers
+      import TestRpWeb.Router.Helpers
     end
   end
 

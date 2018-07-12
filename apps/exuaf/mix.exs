@@ -1,4 +1,4 @@
-defmodule EXUAF.Mixfile do
+defmodule ExUAF.Mixfile do
   use Mix.Project
 
   @version "0.0.1"
@@ -16,7 +16,8 @@ defmodule EXUAF.Mixfile do
       compilers: [:phoenix] ++ Mix.compilers(),
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      aliases: aliases()
     ]
   end
 
@@ -25,7 +26,7 @@ defmodule EXUAF.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {EXUAF.Application, []},
+      mod: {ExUAF.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -43,9 +44,11 @@ defmodule EXUAF.Mixfile do
       {:plug_logger_json, "~> 0.5"},
       {:confex, "~> 3.3.1"},
       {:cowboy, "~> 1.0"},
+      {:httpoison, "~> 1.2"},
       {:phoenix, "~> 1.3.3"},
       {:phoenix_ecto, "~> 3.2"},
-      {:postgrex, ">= 0.0.0"}
+      {:postgrex, ">= 0.0.0"},
+      {:mox, "~> 0.3", only: :test}
     ]
   end
 
