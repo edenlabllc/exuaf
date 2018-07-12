@@ -16,23 +16,23 @@ defmodule EXUAFWeb.FidoController do
       json(conn, resp)
     end
   end
+
   def reg_response(conn, %{"_json" => json}), do: reg_response(conn, json)
 
   def reg_response(conn, params) do
-    with {:ok, resp} <-@fido_client.reg_response(params) do
+    with {:ok, resp} <- @fido_client.reg_response(params) do
       json(conn, resp)
     end
-
   end
 
   def auth_request(conn, _params) do
-    with {:ok, resp} <-@fido_client.auth_request do
+    with {:ok, resp} <- @fido_client.auth_request do
       json(conn, resp)
     end
   end
 
   def auth_response(conn, params) do
-    with {:ok, resp} <-@fido_client.auth_response(params) do
+    with {:ok, resp} <- @fido_client.auth_response(params) do
       json(conn, resp)
     end
   end

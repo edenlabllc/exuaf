@@ -11,14 +11,16 @@ defmodule ExUAF.Web.FidoControllerTest do
   describe "registration request" do
     test "success", %{conn: conn} do
       # create regRequest
-      resp = conn
-      |> get(fido_path(conn, :reg_request, "test-#{:rand.uniform(10_000)}"))
-      |> json_response(200)
+      resp =
+        conn
+        |> get(fido_path(conn, :reg_request, "test-#{:rand.uniform(10_000)}"))
+        |> json_response(200)
 
       assert is_list(resp)
 
       Enum.each(resp, fn elem ->
         assert is_map(elem)
+
         Enum.each(~w(header policy username challenge), fn key ->
           assert Map.has_key?(elem, key), "regRequest response should contain field `#{key}`}"
         end)
@@ -27,27 +29,37 @@ defmodule ExUAF.Web.FidoControllerTest do
       header = hd(resp)["header"]
 
       # send regResponse
-      data = [%{
-        header: header,
-        fcParams: @fcParams,
-        assertions: [%{
-          assertion: @assertion,
-          assertionScheme: @assertion_schema
-        }],
-      }]
+      data = [
+        %{
+          header: header,
+          fcParams: @fcParams,
+          assertions: [
+            %{
+              assertion: @assertion,
+              assertionScheme: @assertion_schema
+            }
+          ]
+        }
+      ]
 
-      resp = conn
-             |> put_req_header("content-type", "application/json")
-             |> post(fido_path(conn, :reg_response), Jason.encode!(data))
-             |> json_response(200)
+      resp =
+        conn
+        |> put_req_header("content-type", "application/json")
+        |> post(fido_path(conn, :reg_response), Jason.encode!(data))
+        |> json_response(200)
 
       assert is_list(resp)
 
       Enum.each(resp, fn elem ->
         assert is_map(elem)
-        Enum.each(~w(authenticator authenticator_id PublicKey attestCert attestDataToSign attestSignature attestVerifiedStatus), fn key ->
-          assert Map.has_key?(elem, key), "regResponse response should contain field `#{key}`}"
-        end)
+
+        Enum.each(
+          ~w(authenticator authenticator_id PublicKey attestCert attestDataToSign attestSignature attestVerifiedStatus),
+          fn key ->
+            assert Map.has_key?(elem, key), "regResponse response should contain field `#{key}`}"
+          end
+        )
+
         assert is_map(elem["authenticator"])
       end)
     end
@@ -57,14 +69,16 @@ defmodule ExUAF.Web.FidoControllerTest do
     @tag :pending
     test "success", %{conn: conn} do
       # create authRequest
-      resp = conn
-             |> post(fido_path(conn, :auth_request))
-             |> json_response(200)
+      resp =
+        conn
+        |> post(fido_path(conn, :auth_request))
+        |> json_response(200)
 
       assert is_map(resp)
 
       Enum.each(resp, fn elem ->
         assert is_map(elem)
+
         Enum.each(~w(header policy username challenge), fn key ->
           assert Map.has_key?(elem, key), "regRequest response should contain field `#{key}`}"
         end)
@@ -73,34 +87,42 @@ defmodule ExUAF.Web.FidoControllerTest do
       header = hd(resp)["header"]
 
       # send authResponse
-      data = [%{
-        header: header,
-        fcParams: @fcParams,
-        assertions: [%{
-          assertion: @assertion,
-          assertionScheme: @assertion_schema
-        }],
-      }]
+      data = [
+        %{
+          header: header,
+          fcParams: @fcParams,
+          assertions: [
+            %{
+              assertion: @assertion,
+              assertionScheme: @assertion_schema
+            }
+          ]
+        }
+      ]
 
-      resp = conn
-             |> put_req_header("content-type", "application/json")
-             |> post(fido_path(conn, :auth_response), Jason.encode!(data))
-             |> json_response(200)
+      resp =
+        conn
+        |> put_req_header("content-type", "application/json")
+        |> post(fido_path(conn, :auth_response), Jason.encode!(data))
+        |> json_response(200)
 
       assert is_list(resp)
 
       Enum.each(resp, fn elem ->
         assert is_map(elem)
-        Enum.each(~w(authenticator authenticator_id PublicKey attestCert attestDataToSign attestSignature attestVerifiedStatus), fn key ->
-          assert Map.has_key?(elem, key), "regResponse response should contain field `#{key}`}"
-        end)
+
+        Enum.each(
+          ~w(authenticator authenticator_id PublicKey attestCert attestDataToSign attestSignature attestVerifiedStatus),
+          fn key ->
+            assert Map.has_key?(elem, key), "regResponse response should contain field `#{key}`}"
+          end
+        )
+
         assert is_map(elem["authenticator"])
       end)
     end
   end
 
   describe "check is user registered" do
-
   end
-
 end

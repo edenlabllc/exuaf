@@ -18,4 +18,4 @@ config :exuaf, ExUAF.Repo,
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
-#config :exuaf, fido_client: FidoServerMock
+# config :exuaf, fido_client: FidoServerMock

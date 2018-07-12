@@ -10,7 +10,6 @@ config :test_rp, TestRpWeb.Endpoint,
 config :logger, :console, format: "[$level] $message\n"
 
 config :fido_qr_code, FidoQrCode.Repo,
-       adapter: Ecto.Adapters.Postgres,
-       database: "fido_qr_code_dev",
-       hostname: "localhost"
-
+  adapter: Ecto.Adapters.Postgres,
+  database: "fido_qr_code_dev",
+  hostname: "localhost"

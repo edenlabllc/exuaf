@@ -18,10 +18,10 @@ defmodule EXUAFWeb.Router do
     head("/regRequest/:username/:app_id", RegistrationController, :is_registered)
     head("/registration/:username/:app_id", RegistrationController, :is_registered)
 
-#    post("/registration/request/:username", RegistrationController, :create)
-#    post("/registration/response", RegistrationController, :create_request)
+    #    post("/registration/request/:username", RegistrationController, :create)
+    #    post("/registration/response", RegistrationController, :create_request)
 
-#    post("/auth/request", AuthenticationController, :create_request)
-#    post("/auth/response", AuthenticationController, :create_request)
+    #    post("/auth/request", AuthenticationController, :create_request)
+    #    post("/auth/response", AuthenticationController, :create_request)
   end
 end

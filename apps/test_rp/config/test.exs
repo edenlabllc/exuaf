@@ -10,13 +10,13 @@ config :test_rp, TestRpWeb.Endpoint,
 config :logger, level: :warn
 
 config :fido_qr_code,
-       fido_server_client: FidoServerClientMock,
-       fido_server_url: "http://localhost:8080",
-       callback_url: "http://localhost:4001/callback",
-       requested_scopes: ["documents.driver_license"],
-       scope_request_ttl: 1000
+  fido_server_client: FidoServerClientMock,
+  fido_server_url: "http://localhost:8080",
+  callback_url: "http://localhost:4001/callback",
+  requested_scopes: ["documents.driver_license"],
+  scope_request_ttl: 1000
 
 config :fido_qr_code, FidoQrCode.Repo,
-       adapter: Ecto.Adapters.Postgres,
-       database: "fido_qr_code_test",
-       hostname: "localhost"
+  adapter: Ecto.Adapters.Postgres,
+  database: "fido_qr_code_test",
+  hostname: "localhost"
