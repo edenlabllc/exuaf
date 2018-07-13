@@ -1,7 +1,7 @@
 defmodule ExUAF.Web.FidoControllerTest do
   @moduledoc false
 
-  use EXUAFWeb.ConnCase, async: false
+  use ExUAFWeb.ConnCase, async: false
 
   @fcParams "eyJhcHBJRCI6Imh0dHBzOi8vdWFmLXRlc3QtMS5ub2tub2t0ZXN0LmNvbTo4NDQzL1NhbXBsZUFwcC91YWYvZmFjZXRzIiwiY2hhbGxlbmdlIjoiSDlpVzl5QTlhQVhGX2xlbFFvaV9EaFVrNTE0QWQ4VHF2MHpDbkNxS0RwbyIsImNoYW5uZWxCaW5kaW5nIjp7fSwiZmFjZXRJRCI6ImNvbS5ub2tub2suYW5kcm9pZC5zYW1wbGVhcHAifQ"
 

@@ -15,6 +15,11 @@ defmodule ExUAF.FidoServer.Client do
     |> Kernel.++([{"Content-Type", "application/json"}])
   end
 
+  @spec facets :: {:ok, map} | {:error, tuple}
+  def facets do
+    get!("/v1/public/uaf/facets")
+  end
+
   @spec create_request(binary) :: {:ok, map} | {:error, tuple}
   def create_request(username) do
     # ToDo decide which request create by stored puyblic key in Fido Server

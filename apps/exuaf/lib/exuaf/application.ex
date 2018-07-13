@@ -11,7 +11,7 @@ defmodule ExUAF.Application do
       # Start the Ecto repository
       supervisor(ExUAF.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(EXUAFWeb.Endpoint, [])
+      supervisor(ExUAFWeb.Endpoint, [])
       # Start your own worker by calling: ExUAF.Worker.start_link(arg1, arg2, arg3)
       # worker(ExUAF.Worker, [arg1, arg2, arg3]),
     ]
@@ -25,7 +25,7 @@ defmodule ExUAF.Application do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    EXUAFWeb.Endpoint.config_change(changed, removed)
+    ExUAFWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

@@ -1,4 +1,4 @@
-defmodule EXUAFWeb.Endpoint do
+defmodule ExUAFWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :exuaf
 
   alias Confex.Resolver
@@ -16,7 +16,7 @@ defmodule EXUAFWeb.Endpoint do
   plug(Plug.MethodOverride)
   plug(Plug.Head)
 
-  plug(EXUAFWeb.Router)
+  plug(ExUAFWeb.Router)
 
   @doc """
   Callback invoked for dynamically configuring the endpoint.

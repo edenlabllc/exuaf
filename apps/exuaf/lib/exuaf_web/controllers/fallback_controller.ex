@@ -3,9 +3,9 @@ defmodule ExUAF.FallbackController do
   This controller should be used as `action_fallback` in rest of controllers to remove duplicated error handling.
   """
 
-  use EXUAFWeb, :controller
+  use ExUAFWeb, :controller
 
-  alias EXUAFWeb.ErrorView
+  alias ExUAFWeb.ErrorView
 
   @typep fallback_param_t :: nil | tuple | Ecto.Changeset.t()
 

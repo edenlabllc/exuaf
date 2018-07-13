@@ -1,12 +1,12 @@
-defmodule EXUAFWeb do
+defmodule ExUAFWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use EXUAFWeb, :controller
-      use EXUAFWeb, :view
+      use ExUAFWeb, :controller
+      use ExUAFWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,9 +19,9 @@ defmodule EXUAFWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: EXUAFWeb
+      use Phoenix.Controller, namespace: ExUAFWeb
       import Plug.Conn
-      import EXUAFWeb.Router.Helpers
+      import ExUAFWeb.Router.Helpers
     end
   end
 
@@ -29,12 +29,12 @@ defmodule EXUAFWeb do
     quote do
       use Phoenix.View,
         root: "lib/exuaf_web/templates",
-        namespace: EXUAFWeb
+        namespace: ExUAFWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
 
-      import EXUAFWeb.Router.Helpers
+      import ExUAFWeb.Router.Helpers
     end
   end
 

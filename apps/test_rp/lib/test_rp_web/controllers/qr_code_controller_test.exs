@@ -1,5 +1,5 @@
 defmodule ExUAF.QrCodeController do
-  use EXUAFWeb, :controller
+  use ExUAFWeb, :controller
 
   def create(conn, params) do
     conn

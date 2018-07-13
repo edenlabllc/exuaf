@@ -1,5 +1,5 @@
-defmodule EXUAFWeb.ErrorView do
-  use EXUAFWeb, :view
+defmodule ExUAFWeb.ErrorView do
+  use ExUAFWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

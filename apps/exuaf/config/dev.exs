@@ -6,7 +6,7 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
-config :exuaf, EXUAFWeb.Endpoint,
+config :exuaf, ExUAFWeb.Endpoint,
   http: [port: 4000],
   debug_errors: false,
   check_origin: false,
@@ -40,6 +40,6 @@ config :exuaf, ExUAF.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "exuaf_dev",
+  database: "fido",
   hostname: "localhost",
   pool_size: 10

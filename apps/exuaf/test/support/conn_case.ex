@@ -1,4 +1,4 @@
-defmodule EXUAFWeb.ConnCase do
+defmodule ExUAFWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -19,10 +19,10 @@ defmodule EXUAFWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      import EXUAFWeb.Router.Helpers
+      import ExUAFWeb.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint EXUAFWeb.Endpoint
+      @endpoint ExUAFWeb.Endpoint
     end
   end
 
