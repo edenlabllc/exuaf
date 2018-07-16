@@ -1,0 +1,59 @@
+language: elixir
+git:
+  depth: 1000
+cache:
+  directories:
+  - _build
+  - deps
+services:
+- docker
+- redis-server
+- rabbitmq
+- postgresql
+addons:
+  postgresql: "9.6"
+  apt:
+    update: true
+    packages:
+    - docker-ce
+elixir:
+- 1.6.6
+otp_release:
+- 21
+env:
+  global:
+  - Chart=kimlic-core
+  - MIX_ENV=test
+  - REQUIRE_VERSION_TAGS="true"
+  - DOCKER_HUB_ACCOUNT=edenlabllc
+  - TRUNK_BRANCH="master"
+  - TRAVIS_REPO_SLUG="edenlabllc/exuaf"
+  - secure: Bx33EGCfwM3N6Hg+C/jQkRCJezs1U/iVV41K7ppNBTzubr6RWu3ZmT3nagsFi3wlsIEIOCflJl+t0Udwn4d4Shbj2Aj9RrniACuln9PHp3VbfpnuyvIx3rb/KwDoXYPQImOWrokoYM3B+li1OyUL2N6XX1CkI5L12hgXBMYYd67fQAmSjbE1Q408n5O/fsVBCqNZWOT1r5MUnOjh3HHasE05yB7zEI0S6e3sesTNCFa0nlvG/5f+byvi59KCiS22tBWJK7JpLAcIdiRK7vNYUj9oCEUtigesMWEDCKKDsURJrDf+Yv0RfQD0bU0+ACGDhCn++YJX8NT4FOvlpv5QXPRgf5te5Waww/YMxG2gdijowCgfnp60WzowzYXLsu5Cx+9TGYY5Uk3R01DvjCEnICiU2odwuxagvWCpuB228agGhDPVTVmEONHV1u9CiJFpUKLIdeQL/rtYPlrYWBK3ru9+AQhFwW+6xUOy09gbdbiJZyR02ESakTSD7f71DGr5NBdBTpzFjIlRA8zYviuM9O1LGsir/C14R73eAPomgT9atGPh5I9ueunq5+Xs62lHsSSlrk5KJEisAXnsmrC5u5quewMWS4+QWfmieaUH/FHoJ7nx9ijXy/Btd2d2+QwftyE3GX+B3Vp9TY1p18HYFE0wzM+vpa9er1wjHjcmCvE=
+  - secure: Xntp+wY2JF25JGqn9yerMUO58JfxBqA9QDGzQ9Y0o5E6imB9e8LehQoCdAdT2h4+QTJZPzwHr4ExpxSGSq/X5eApdXZwAMGs39qvg8S3ZGFd5iB4Ey/shPhz4HCRwDFAatoygKa5D/UTvcSyfFvilg9Lxeg358ahkeeo/h6LUX2jJ54fn1ha92vWzst9vUQWPgAuMU8+UTcvfzirBuF+YM31oou454suynqPURYN9BePeE++Me7FWpzYI6/27ReLCRPfg/nM8tbz9VLbHVmedSUaev/OsFqCBtF50bN7BdDpos4xK6TWrJCdT0OoEnsJVPEHZ5woflxek/g55qdw5aGwvSLOHykVJjW8QXkOkYYr3nrsxcuY71652ObHKSoGWf3gj7HzgcUPtoSLmLbm8ERJRF21Kq515w7Jl9DuH4i2xwSaqAwmrzaxKRALJo+aeBZrynaeI1dFJACiIAVQnmgF87b1vPxfqkUAKF6e5+Z63zfdpE3ciobbf10uisqUzOZw2C3u8CL/ztc4jaeFEVLxwJkmQY3b6VopH7dkgal9yYiN+NGSk4dyvVYlZHhEAyiEUSitFkEMTpP9/GzLBD3KqdH8bdFGn+wJudvXACHHaBgPFFfaS9uZ8DU5QIpJHZ2c/XUZZOumRZC/oSN+JAcEEEyLU0Lu146zyLcK7Mc=
+branches:
+  except:
+  - "/[0-9]*\\.[0-9]*\\.[0-9]*/"
+before_install:
+# Expose Postgres
+- sudo ./bin/ci/init-db.sh
+before_script:
+# Extract project name and version from mix.exs
+- source ./bin/ci/rel/fetch-project-environment.sh
+# Load information about new version
+- source ./bin/ci/release/fetch-source-version.sh
+script:
+# Check for versioning error
+- ./bin/ci/release/check-version-error.sh || travis_terminate 1
+# Increment version in mix.exs
+- ./bin/ci/release/put-source-version.sh || travis_terminate 1
+# Run all tests except pending ones
+- ./bin/mix_tests.sh || travis_terminate 1
+# Build Docker container
+- ./bin/ci/rel/build-container.sh || travis_terminate 1
+# Run Docker container
+- sudo ./bin/ci/rel/start-container.sh
+# Check that Docker container started
+- sudo ./bin/ci/release/check-container.sh || travis_terminate 1
+# Submit Docker container to Docker Hub and create GitHub Release by pushing tag with changelog
+- ./bin/ci/rel/push-changes.sh || travis_terminate 1
+
