@@ -12,7 +12,7 @@ defmodule ExUAFWeb.FidoController do
   @fido_client Application.get_env(:exuaf, :fido_client)
 
   def facets(conn, _params) do
-    with {:ok, resp} <- @fido_client.facets() |> IO.inspect() do
+    with {:ok, resp} <- @fido_client.facets() do
       json(conn, resp)
     end
   end

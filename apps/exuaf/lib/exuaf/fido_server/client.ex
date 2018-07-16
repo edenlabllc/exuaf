@@ -38,12 +38,11 @@ defmodule ExUAF.FidoServer.Client do
 
   @spec auth_request :: {:ok, map} | {:error, tuple}
   def auth_request do
-    post!("/v1/public/authRequest", "")
+    get!("/v1/public/authRequest")
   end
 
   @spec auth_response(term) :: {:ok, map} | {:error, tuple}
   def auth_response(data) do
-    IO.inspect(data, label: :data)
     post!("/v1/public/uafAuthResponse", Jason.encode!(data))
   end
 
