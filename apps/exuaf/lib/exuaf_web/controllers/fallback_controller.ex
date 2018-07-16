@@ -38,6 +38,12 @@ defmodule ExUAF.FallbackController do
     |> render(ErrorView, :"500", %{message: message})
   end
 
+  def call(conn, {:error, {:response_json_decoder, output}}) do
+    conn
+    |> put_status(:internal_server_error)
+    |> render(ErrorView, :"500", %{message: "invalid JSON from FIDO Server"})
+  end
+
   def call(conn, {:error, {:getaway_timeout, message}}) do
     conn
     |> put_status(504)

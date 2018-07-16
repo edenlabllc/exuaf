@@ -15,7 +15,7 @@ defmodule ExUAFWeb.Router do
     post("/regResponse", FidoController, :reg_response)
 
     # Authentications
-    post("/uafAuthRequest", FidoController, :auth_request)
+    get("/authRequest", FidoController, :auth_request)
     post("/uafAuthResponse", FidoController, :auth_response)
 
     # Elixir implementation

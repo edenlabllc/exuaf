@@ -37,6 +37,8 @@ defmodule ExUAFWeb.FidoController do
     end
   end
 
+  def auth_response(conn, %{"_json" => json}), do: auth_response(conn, json)
+
   def auth_response(conn, params) do
     with {:ok, resp} <- @fido_client.auth_response(params) do
       json(conn, resp)
