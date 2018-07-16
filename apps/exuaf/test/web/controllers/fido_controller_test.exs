@@ -115,6 +115,5 @@ defmodule ExUAF.Web.FidoControllerTest do
   end
 
   describe "check is user registered" do
-
   end
 end

@@ -39,7 +39,7 @@ defmodule EXUAF.Registrations.Registration do
     field(:attest_signature, :string)
     field(:attest_verified_status, :string)
 
-#    timestamps()
+    #    timestamps()
   end
 
   @spec changeset(map) :: Ecto.Changeset.t()
