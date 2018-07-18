@@ -37,8 +37,8 @@ defmodule TestRp.Mixfile do
   defp deps do
     [
       {:cowboy, "~> 1.0"},
-      {:ecto_logger_json, git: "https://github.com/edenlabllc/ecto_logger_json.git", branch: "query_params"},
-      {:fido_qr_code, git: "https://github.com/edenlabllc/fido_qr_code"},
+#      {:ecto_logger_json, git: "https://github.com/edenlabllc/ecto_logger_json.git", branch: "query_params"},
+#      {:fido_qr_code, git: "https://github.com/edenlabllc/fido_qr_code"},
       {:phoenix, "~> 1.3.3"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},
