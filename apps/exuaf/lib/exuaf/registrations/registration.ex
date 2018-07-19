@@ -3,7 +3,7 @@ defmodule EXUAF.Registrations.Registration do
   import Ecto.Changeset
 
   @required_fields ~w(
-    authenticator
+    authenticator_id
     username
   )a
 
@@ -23,8 +23,8 @@ defmodule EXUAF.Registrations.Registration do
   )a
 
   @primary_key {:id, :binary_id, autogenerate: true}
-  schema "registration_records" do
-    field(:authenticator, :string)
+  schema "registrations" do
+    field(:authenticator_id, Ecto.UUID)
     field(:public_key, :string)
     field(:sign_counter, :string)
     field(:authenticator_version, :string)
@@ -39,7 +39,7 @@ defmodule EXUAF.Registrations.Registration do
     field(:attest_signature, :string)
     field(:attest_verified_status, :string)
 
-    #    timestamps()
+    timestamps()
   end
 
   @spec changeset(map) :: Ecto.Changeset.t()

@@ -8,8 +8,8 @@ defmodule ExUAFWeb.RegistrationController do
   action_fallback(FallbackController)
 
   def is_registered(conn, %{"username" => username}) do
-    case Registrations.get_by(username: username) do
-      %Registration{} -> send_resp(conn, 204, "")
+    case Registrations.username_registered?(username) do
+      true -> send_resp(conn, 204, "")
       _ -> send_resp(conn, 404, "")
     end
   end

@@ -57,13 +57,13 @@ defmodule ExUAF.Web.FidoControllerTest do
         assert is_map(elem)
 
         Enum.each(
-          ~w(authenticator authenticator_id PublicKey attestCert attestDataToSign attestSignature attestVerifiedStatus),
+          ~w(authenticator_id authenticator_id PublicKey attestCert attestDataToSign attestSignature attestVerifiedStatus),
           fn key ->
             assert Map.has_key?(elem, key), "regResponse response should contain field `#{key}`}"
           end
         )
 
-        assert is_map(elem["authenticator"])
+        assert is_map(elem["authenticator_id"])
       end)
     end
   end
