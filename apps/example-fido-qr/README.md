@@ -9,7 +9,7 @@ config :fido_qr_code,
   callback_url: "http://relying-party.example.com/callback",
   fido_server_url: "http://localhost:4001",
   requested_scopes: ~w(email phone),
-  scope_request_ttl: 1_000,
+  scope_request_ttl: 60, # seconds
   ecto_repos: [FidoQrCode.Repo]
 
 config :fido_qr_code, FidoQrCode.Repo,
