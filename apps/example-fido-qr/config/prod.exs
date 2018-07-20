@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :test_rp, TestRpWeb.Endpoint,
+config :example_fido_qr, ExampleFidoQRWeb.Endpoint,
   load_from_system_env: true,
   url: [host: "example.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
@@ -8,6 +8,7 @@ config :test_rp, TestRpWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+# Configures FidoQrCode Repo
 config :fido_qr_code, FidoQrCode.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "${DB_NAME}",

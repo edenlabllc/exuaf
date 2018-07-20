@@ -1,12 +1,12 @@
-defmodule TestRpWeb do
+defmodule ExampleFidoQRWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use TestRpWeb, :controller
-      use TestRpWeb, :view
+      use ExampleFidoQRWeb, :controller
+      use ExampleFidoQRWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,22 +19,22 @@ defmodule TestRpWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: TestRpWeb
+      use Phoenix.Controller, namespace: ExampleFidoQRWeb
       import Plug.Conn
-      import TestRpWeb.Router.Helpers
+      import ExampleFidoQRWeb.Router.Helpers
     end
   end
 
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/test_rp_web/templates",
-        namespace: TestRpWeb
+        root: "lib/example_fido_qr_web/templates",
+        namespace: ExampleFidoQRWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
 
-      import TestRpWeb.Router.Helpers
+      import ExampleFidoQRWeb.Router.Helpers
     end
   end
 

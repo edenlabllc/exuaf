@@ -6,19 +6,36 @@
 use Mix.Config
 
 # General application configuration
-config :test_rp,
-  namespace: TestRp
+config :example_fido_qr,
+  namespace: ExampleFidoQR
 
 # Configures the endpoint
-config :test_rp, TestRpWeb.Endpoint,
+config :example_fido_qr, ExampleFidoQRWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "vN9rXEwxbI/KxZIcN+oQ8ZGBFBo2289BTCSseY7CvZUTDQT+yOx/cgiAYAH5MSiS",
-  render_errors: [view: TestRpWeb.ErrorView, accepts: ~w(json)]
+  render_errors: [view: ExampleFidoQRWeb.ErrorView, accepts: ~w(json)]
 
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:user_id]
+
+# Configures FidoQrCode library
+config :fido_qr_code,
+  fido_server_client: FidoQrCode.FidoServer.Client,
+  relying_party_url: "http://relying-party.example.com",
+  callback_url: "http://relying-party.example.com/callback",
+  fido_server_url: "http://localhost:4001",
+  requested_scopes: ~w(email phone),
+  scope_request_ttl: 1_000,
+  ecto_repos: [FidoQrCode.Repo]
+
+# Configures FidoQrCode Repo
+config :fido_qr_code, FidoQrCode.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  database: "fido_qr_code",
+  hostname: "localhost"
+
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

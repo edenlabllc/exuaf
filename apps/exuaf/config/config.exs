@@ -11,8 +11,7 @@ config :exuaf, ExUAFWeb.Endpoint,
   load_from_system_env: true,
   url: [host: "localhost"],
   secret_key_base: "fsUwr9HzZhrg9VIu30TB5DaWD2gsWft2rSoR8XchaKctNWHCcw9KjEERXq2dxHrE",
-  render_errors: [view: ExUAFWeb.ErrorView, accepts: ~w(json)],
-  pubsub: [name: ExUAF.PubSub, adapter: Phoenix.PubSub.PG2]
+  render_errors: [view: ExUAFWeb.ErrorView, accepts: ~w(json)]
 
 config :phoenix, :format_encoders, json: Jason
 

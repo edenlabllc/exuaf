@@ -9,7 +9,7 @@ defmodule ExUAFWeb.FidoController do
 
   action_fallback(FallbackController)
 
-  @fido_client Application.get_env(:exuaf, :fido_client)
+  @fido_client Application.get_env!(:exuaf, :fido_client)
 
   def facets(conn, _params) do
     with {:ok, resp} <- @fido_client.facets() do

@@ -1,5 +1,5 @@
-defmodule TestRpWeb.ErrorView do
-  use TestRpWeb, :view
+defmodule ExampleFidoQRWeb.ErrorView do
+  use ExampleFidoQRWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

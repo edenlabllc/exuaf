@@ -1,14 +1,14 @@
-defmodule TestRp.Mixfile do
+defmodule ExampleFidoQR.Mixfile do
   use Mix.Project
 
   def project do
     [
-      app: :test_rp,
+      app: :example_fido_qr,
       version: "0.0.1",
       build_path: "../../_build",
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
-      lockfile: "../../mix.lock",
+      lockfile: "mix.lock",
       elixir: "~> 1.4",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix] ++ Mix.compilers(),
@@ -22,7 +22,7 @@ defmodule TestRp.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {TestRp.Application, []},
+      mod: {ExampleFidoQR.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -37,8 +37,7 @@ defmodule TestRp.Mixfile do
   defp deps do
     [
       {:cowboy, "~> 1.0"},
-      #      {:ecto_logger_json, git: "https://github.com/edenlabllc/ecto_logger_json.git", branch: "query_params"},
-      #      {:fido_qr_code, git: "https://github.com/edenlabllc/fido_qr_code"},
+      {:fido_qr_code, git: "https://github.com/kimlic/fido_qr_code"},
       {:phoenix, "~> 1.3.3"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},

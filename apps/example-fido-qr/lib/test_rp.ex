@@ -1,6 +1,6 @@
-defmodule TestRp do
+defmodule ExampleFidoQR do
   @moduledoc """
-  TestRp keeps the contexts that define your domain
+  ExampleFidoQR keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

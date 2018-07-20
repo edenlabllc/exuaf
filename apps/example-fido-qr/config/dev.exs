@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :test_rp, TestRpWeb.Endpoint,
+config :example_fido_qr, ExampleFidoQRWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
