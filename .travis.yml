@@ -36,24 +36,24 @@ branches:
 before_install:
 # Expose Postgres
 - sudo ./bin/ci/init-db.sh
-before_script:
-# Extract project name and version from mix.exs
-- source ./bin/ci/rel/fetch-project-environment.sh
-# Load information about new version
-- source ./bin/ci/release/fetch-source-version.sh
-script:
-# Check for versioning error
-- ./bin/ci/release/check-version-error.sh || travis_terminate 1
-# Increment version in mix.exs
-- ./bin/ci/release/put-source-version.sh || travis_terminate 1
-# Run all tests except pending ones
-- ./bin/mix_tests.sh || travis_terminate 1
-# Build Docker container
-- ./bin/ci/rel/build-container.sh || travis_terminate 1
-# Run Docker container
-- sudo ./bin/ci/rel/start-container.sh
-# Check that Docker container started
-- sudo ./bin/ci/release/check-container.sh || travis_terminate 1
-# Submit Docker container to Docker Hub and create GitHub Release by pushing tag with changelog
-- ./bin/ci/rel/push-changes.sh || travis_terminate 1
+#before_script:
+## Extract project name and version from mix.exs
+#- source ./bin/ci/rel/fetch-project-environment.sh
+## Load information about new version
+#- source ./bin/ci/release/fetch-source-version.sh
+#script:
+## Check for versioning error
+#- ./bin/ci/release/check-version-error.sh || travis_terminate 1
+## Increment version in mix.exs
+#- ./bin/ci/release/put-source-version.sh || travis_terminate 1
+## Run all tests except pending ones
+#- ./bin/mix_tests.sh || travis_terminate 1
+## Build Docker container
+#- ./bin/ci/rel/build-container.sh || travis_terminate 1
+## Run Docker container
+#- sudo ./bin/ci/rel/start-container.sh
+## Check that Docker container started
+#- sudo ./bin/ci/release/check-container.sh || travis_terminate 1
+## Submit Docker container to Docker Hub and create GitHub Release by pushing tag with changelog
+#- ./bin/ci/rel/push-changes.sh || travis_terminate 1
 
