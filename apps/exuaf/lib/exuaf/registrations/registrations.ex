@@ -1,8 +1,8 @@
 defmodule EXUAF.Registrations do
   import Ecto.Query, only: [select: 3, where: 3, limit: 2]
 
-  alias ExUAF.Repo
   alias EXUAF.Registrations.Registration
+  alias ExUAF.Repo
 
   @spec get!(binary) :: Registration.t()
   def get!(id), do: Repo.get!(Registration, id)

@@ -12,14 +12,15 @@ defmodule ExampleFidoQRWeb.ExampleController do
   # validate request for required param scope_request
   def callback(conn, %{"scope_request" => id}) do
     username = "get-from-headers"
+
     with {:ok, %{scope_request: _, fido: _} = resp} <- FidoQrCode.process_scope_request(id, username) do
       json(conn, resp)
     else
-      {:error, :scope_request_already_processed}
-      -> json(conn, %{error: "Scope request already processed"})
+      {:error, :scope_request_already_processed} ->
+        json(conn, %{error: "Scope request already processed"})
 
-      {:error, :scope_request_expired}
-      -> json(conn, %{error: "Scope request expired"})
+      {:error, :scope_request_expired} ->
+        json(conn, %{error: "Scope request expired"})
     end
   end
 end

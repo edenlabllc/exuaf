@@ -8,7 +8,7 @@ defmodule ExampleFidoQR.Mixfile do
       build_path: "../../_build",
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
-      lockfile: "mix.lock",
+      lockfile: "../../mix.lock",
       elixir: "~> 1.4",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix] ++ Mix.compilers(),
@@ -37,9 +37,8 @@ defmodule ExampleFidoQR.Mixfile do
   defp deps do
     [
       {:cowboy, "~> 1.0"},
-      {:fido_qr_code, git: "https://github.com/kimlic/fido_qr_code"},
+      {:fido_qr_code, git: "https://github.com/kimlic/fido_qr_code", runtime: false},
       {:phoenix, "~> 1.3.3"},
-      {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},
       {:postgrex, ">= 0.0.0"}
     ]

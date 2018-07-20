@@ -3,7 +3,6 @@ defmodule ExUAFWeb.RegistrationController do
 
   alias ExUAF.FallbackController
   alias EXUAF.Registrations
-  alias EXUAF.Registrations.Registration
 
   action_fallback(FallbackController)
 

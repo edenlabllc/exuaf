@@ -36,7 +36,6 @@ config :fido_qr_code, FidoQrCode.Repo,
   database: "fido_qr_code",
   hostname: "localhost"
 
-
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
