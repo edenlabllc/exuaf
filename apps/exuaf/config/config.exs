@@ -23,4 +23,11 @@ config :logger, :console,
 
 config :exuaf, ExUAF.FidoServer.Client, url: "http://localhost:8080"
 
+config :exuaf, ExUAF.Facets,
+  ids: {:system, :list, "FACET_TRUSTED_IDS"},
+  version: [
+    major: {:system, :integer, "FACET_VERSION_MAJOR", 1},
+    minor: {:system, :integer, "FACET_VERSION_MAJOR", 0}
+  ]
+
 import_config "#{Mix.env()}.exs"
