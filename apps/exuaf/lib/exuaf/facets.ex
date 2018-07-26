@@ -2,8 +2,10 @@ defmodule ExUAF.Facets do
   def get_trusted do
     %{
       trustedFacets: [
-        version: version(),
-        ids: Confex.fetch_env!(:exuaf, __MODULE__)[:ids]
+        %{
+          version: version(),
+          ids: Confex.fetch_env!(:exuaf, __MODULE__)[:ids]
+        }
       ]
     }
   end

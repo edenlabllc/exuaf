@@ -117,6 +117,8 @@ defmodule ExUAF.Web.FidoControllerTest do
 
   describe "facets" do
     test "get list", %{conn: conn} do
+      System.put_env("FACET_TRUSTED_IDS", "http://facets.example.com, http://example.com/facets")
+
       resp =
         conn
         |> get(fido_path(conn, :facets))
@@ -131,7 +133,11 @@ defmodule ExUAF.Web.FidoControllerTest do
       assert %{"major" => 1, "minor" => 0} == facet["version"]
 
       assert Map.has_key?(facet, "ids")
-      assert is_list(facet["ids"])
+      assert ["http://facets.example.com", "http://example.com/facets"] == facet["ids"]
+
+      on_exit(fn ->
+        System.put_env("FACET_TRUSTED_IDS", "")
+      end)
     end
   end
 end

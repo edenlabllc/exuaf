@@ -5,6 +5,7 @@ defmodule ExUAFWeb.FidoController do
 
   use ExUAFWeb, :controller
 
+  alias ExUAF.Facets
   alias ExUAF.FallbackController
 
   action_fallback(FallbackController)
@@ -12,9 +13,7 @@ defmodule ExUAFWeb.FidoController do
   @fido_client Application.get_env(:exuaf, :fido_client)
 
   def facets(conn, _params) do
-    with {:ok, resp} <- @fido_client.facets() do
-      json(conn, resp)
-    end
+    json(conn, Facets.get_trusted())
   end
 
   def reg_request(conn, params) do
