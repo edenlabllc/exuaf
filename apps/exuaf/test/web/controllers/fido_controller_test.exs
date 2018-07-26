@@ -115,6 +115,29 @@ defmodule ExUAF.Web.FidoControllerTest do
     end
   end
 
-  describe "check is user registered" do
+  describe "facets" do
+    test "get list", %{conn: conn} do
+      System.put_env("FACET_TRUSTED_IDS", "http://facets.example.com, http://example.com/facets")
+
+      resp =
+        conn
+        |> get(fido_path(conn, :facets))
+        |> json_response(200)
+
+      assert Map.has_key?(resp, "trustedFacets")
+      assert is_list(resp["trustedFacets"])
+
+      facet = hd(resp["trustedFacets"])
+
+      assert Map.has_key?(facet, "version")
+      assert %{"major" => 1, "minor" => 0} == facet["version"]
+
+      assert Map.has_key?(facet, "ids")
+      assert ["http://facets.example.com", "http://example.com/facets"] == facet["ids"]
+
+      on_exit(fn ->
+        System.put_env("FACET_TRUSTED_IDS", "")
+      end)
+    end
   end
 end
